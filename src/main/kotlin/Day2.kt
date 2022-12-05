@@ -1,4 +1,4 @@
-fun main(args: Array<String>) {
+fun main() {
 
     val fileContent = AClass::class.java.getResource("2.txt")!!.readText()
 

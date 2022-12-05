@@ -1,4 +1,4 @@
-fun main(args: Array<String>) {
+fun main() {
 
     val fileContent = AClass::class.java.getResource("5.txt")!!.readText()
     val isPartB = true
