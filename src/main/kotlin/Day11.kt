@@ -6,14 +6,14 @@ fun main() {
 
     val monkeys = fileContent.split("\n\n")
         .map { monkeyDescription ->
-            val (items, operation, divider, monkeyIfTrue, monkeyIfFalse) = monkeyPattern.find(monkeyDescription)!!.destructured
+            val (items, operation, testValue, monkeyIfTrue, monkeyIfFalse) = monkeyPattern.find(monkeyDescription)!!.destructured
             val itemsParsed = items.split(", ")
                 .map { it.toLong() }
                 .toMutableList()
             Monkey(
                 itemsParsed,
                 parseOperation(operation),
-                divider.toLong(),
+                testValue.toLong(),
                 monkeyIfTrue.toInt(),
                 monkeyIfFalse.toInt()
             )
@@ -22,18 +22,17 @@ fun main() {
     val maxDivider = monkeys.map { it.testValue }.fold(1L) { acc, v -> acc * v }
 
     for (round in 1..10_000) {
-
         monkeys.forEach { monkey ->
-            monkey.items.forEach { item ->
+            monkey.items.forEach {
                 monkey.inspectionCounter++
-                val newItemValue = monkey.operation(item) % maxDivider
+                val newItemValue = monkey.operation(it) % maxDivider
                 val nextMonkey = monkey.getNextMonkey(newItemValue)
                 monkeys[nextMonkey].items.add(newItemValue)
             }
             monkey.items.clear()
         }
 
-        if (round % 1000 == 0 || round < 20) {
+        if (round % 1000 == 0) {
             println("== After round $round ==")
             printInspectionRates(monkeys)
         }
@@ -43,12 +42,11 @@ fun main() {
     val result = sortedMonkeyBusiness[0] * sortedMonkeyBusiness[1]
 
     println("\nAnswer: $result")
-
 }
 
 private fun printInspectionRates(monkeys: List<Monkey>) {
     monkeys.forEachIndexed { index, monkey ->
-        println("Monkey $index: inspected items ${monkey.inspectionCounter} times")
+        println("Monkey $index inspected items ${monkey.inspectionCounter} times.")
     }
 }
 

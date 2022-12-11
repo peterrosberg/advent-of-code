@@ -25,6 +25,15 @@ fun main() {
 }
 
 private fun registerCycle(cycle: Int, x: Int): Int {
+    printForPartB(cycle, x)
+
+    if (cycle % 40 == 20) {
+        return cycle * x
+    }
+    return 0
+}
+
+private fun printForPartB(cycle: Int, x: Int) {
     val pos = (cycle - 1) % 40
     val pixel = if (pos >= x - 1 && pos <= x + 1) {
         "#"
@@ -33,9 +42,4 @@ private fun registerCycle(cycle: Int, x: Int): Int {
     }
     print(pixel)
     if (cycle % 40 == 0) println()
-
-    if (cycle % 40 == 20) {
-        return cycle * x
-    }
-    return 0
 }
