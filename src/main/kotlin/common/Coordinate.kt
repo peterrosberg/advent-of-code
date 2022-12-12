@@ -1,5 +1,8 @@
 package common
 
+/**
+ * Useful class for keeping track of Coordinates
+ */
 data class Coordinate(
     val x: Int,
     val y: Int
@@ -17,5 +20,6 @@ data class Coordinate(
         val LEFT = Coordinate(-1, 0)
         val UP = Coordinate(0, -1)
         val DOWN = Coordinate(0, 1)
+        val ALL_DIRECTIONS = listOf(RIGHT, LEFT, UP, DOWN)
     }
 }

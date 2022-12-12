@@ -1,3 +1,5 @@
+import common.getFileContent
+
 fun main() {
 
     val commandRegex = "^\\$.*".toRegex()
@@ -6,7 +8,7 @@ fun main() {
     val totalSpace = 70000000
     val targetSpace = 30000000
 
-    val fileContent = AClass::class.java.getResource("7.txt")!!.readText()
+    val fileContent = getFileContent("7.txt")
 
     val rootDir = Directory("/", null)
     var currentDir = rootDir

@@ -1,6 +1,8 @@
+import common.getFileContent
+
 fun main() {
 
-    val fileContent = AClass::class.java.getResource("3.txt")!!.readText()
+    val fileContent = getFileContent("3.txt")
 
     val rows = fileContent.split("\n")
     val sum = rows

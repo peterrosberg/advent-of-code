@@ -1,9 +1,10 @@
 import common.Coordinate
+import common.getFileContent
 import kotlin.math.abs
 
 fun main() {
 
-    val fileContent = AClass::class.java.getResource("09.txt")!!.readText()
+    val fileContent = getFileContent("09.txt")
 
     val visitedPositions = mutableSetOf<Coordinate>()
     val rope = MutableList(10) { Coordinate(0, 0) }

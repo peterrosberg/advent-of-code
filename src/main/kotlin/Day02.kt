@@ -1,6 +1,8 @@
+import common.getFileContent
+
 fun main() {
 
-    val fileContent = AClass::class.java.getResource("2.txt")!!.readText()
+    val fileContent = getFileContent("2.txt")
 
     val sum = fileContent.split("\n")
         .map { s ->

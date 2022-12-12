@@ -1,15 +1,9 @@
 import common.Coordinate
-
-val directions = listOf(
-    Coordinate(0, 1),
-    Coordinate(0, -1),
-    Coordinate(1, 0),
-    Coordinate(-1, 0)
-)
+import common.getFileContent
 
 fun main() {
 
-    val fileContent = AClass::class.java.getResource("8.txt")!!.readText()
+    val fileContent = getFileContent("8.txt")
     val grid = fileContent.split("\n")
         .map { row ->
             row.map { treeHeight ->
@@ -66,7 +60,7 @@ private fun calculateScenicScore(grid: List<List<Tree>>, location: Coordinate): 
     val tree1 = getTree(grid, location)!!
     val treeHeight = tree1.height
 
-    val totalScore = directions.map { d ->
+    val totalScore = Coordinate.ALL_DIRECTIONS.map { d ->
         var l = location
         var score = 0
         do {

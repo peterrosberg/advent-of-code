@@ -1,6 +1,8 @@
+import common.getFileContent
+
 fun main() {
 
-    val fileContent = AClass::class.java.getResource("5.txt")!!.readText()
+    val fileContent = getFileContent("5.txt")
     val isPartB = true
 
     val crateStack = "\\[([A-Z])]| {4}".toRegex()

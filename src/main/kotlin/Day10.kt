@@ -1,6 +1,8 @@
+import common.getFileContent
+
 fun main() {
 
-    val fileContent = AClass::class.java.getResource("10.txt")!!.readText()
+    val fileContent = getFileContent("10.txt")
 
     var cycle = 1
     var x = 1

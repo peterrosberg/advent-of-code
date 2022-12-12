@@ -1,6 +1,8 @@
+import common.getFileContent
+
 fun main() {
 
-    val fileContent = AClass::class.java.getResource("4.txt")!!.readText()
+    val fileContent = getFileContent("4.txt")
 
     val pairRanges = fileContent.split("\n")
         .mapNotNull { line ->
