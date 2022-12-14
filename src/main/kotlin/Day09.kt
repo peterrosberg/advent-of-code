@@ -1,5 +1,5 @@
 import common.Coordinate
-import common.getFileContent
+
 import kotlin.math.abs
 
 fun main() {

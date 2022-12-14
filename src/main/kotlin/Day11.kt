@@ -1,5 +1,3 @@
-import common.getFileContent
-
 fun main() {
     val monkeyPattern =
         "Starting items: (.+)\n\\s+Operation: new = (.+)\n\\s+Test: divisible by (\\d+)\n\\s+If true: throw to monkey (\\d+)\n\\s+If false: throw to monkey (\\d+)".toRegex()

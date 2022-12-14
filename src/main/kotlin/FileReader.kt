@@ -1,5 +1,3 @@
-package common
-
 /**
  * Used for reading resources in the resource folder only
  */

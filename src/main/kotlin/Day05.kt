@@ -1,5 +1,3 @@
-import common.getFileContent
-
 fun main() {
 
     val fileContent = getFileContent("5.txt")

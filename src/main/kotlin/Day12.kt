@@ -1,5 +1,4 @@
 import common.Coordinate
-import common.getFileContent
 import java.lang.Integer.min
 
 fun main() {
