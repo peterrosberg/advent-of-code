@@ -45,16 +45,8 @@ fun calculateTailPosition(headPos: Coordinate, tailPos: Coordinate): Coordinate 
 private fun constrainValue(value: Int) = if (value == 0) 0 else value / abs(value)
 
 private fun getDirection(str: String) = when (str) {
-    "R" -> {
-        Coordinate.RIGHT
-    }
-    "L" -> {
-        Coordinate.LEFT
-    }
-    "U" -> {
-        Coordinate.UP
-    }
-    else -> {
-        Coordinate.DOWN
-    }
+    "R" -> Coordinate.RIGHT
+    "L" -> Coordinate.LEFT
+    "U" -> Coordinate.UP
+    else -> Coordinate.DOWN
 }

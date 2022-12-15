@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.21")
+    testImplementation("org.assertj:assertj-core:3.23.1")
     testImplementation(kotlin("test"))
 }
 

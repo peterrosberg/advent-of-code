@@ -16,7 +16,7 @@ fun main() {
     println(partA)
 
     val partB = fileContent.split("\n\n", "\n")
-        .plus(listOf("[[3]]", "[[6]]"))
+        .plus(listOf("[[2]]", "[[6]]"))
         .map {
             parseRecursiveList(it)
         }.sortedWith(Day13Comparator())
@@ -24,7 +24,7 @@ fun main() {
 
     partB.forEach { println(it) }
 
-    val firstMarkerIndex = partB.indexOf(listOf(listOf(3))) + 1
+    val firstMarkerIndex = partB.indexOf(listOf(listOf(2))) + 1
     val secondMarkerIndex = partB.indexOf(listOf(listOf(6))) + 1
     println(firstMarkerIndex * secondMarkerIndex)
 }
