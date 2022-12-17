@@ -1,4 +1,4 @@
-package common
+package com.pepp.adventofcode.common
 
 /**
  * Useful class for keeping track of Coordinates

@@ -1,5 +1,7 @@
-import common.Coordinate
+package com.pepp.adventofcode
 
+import com.pepp.adventofcode.common.Coordinate
+import com.pepp.adventofcode.common.getFileContent
 import kotlin.math.abs
 
 fun main() {

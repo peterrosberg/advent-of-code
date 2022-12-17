@@ -1,3 +1,7 @@
+package com.pepp.adventofcode
+
+import com.pepp.adventofcode.common.getFileContent
+
 fun main() {
 
     val fileContent = getFileContent("10.txt")
