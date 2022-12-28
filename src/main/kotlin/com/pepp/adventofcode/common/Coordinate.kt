@@ -1,5 +1,7 @@
 package com.pepp.adventofcode.common
 
+import kotlin.math.abs
+
 /**
  * Useful class for keeping track of Coordinates
  */
@@ -13,6 +15,10 @@ data class Coordinate(
 
     fun minus(other: Coordinate): Coordinate {
         return Coordinate(x - other.x, y - other.y)
+    }
+    
+    fun manhattanDistanceTo(other: Coordinate): Int {
+        return abs(x - other.x) + abs(y - other.y)
     }
 
     companion object {
