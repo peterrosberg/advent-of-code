@@ -24,10 +24,12 @@ fun main() {
                 ongoingDigit += c
             }
             if ((!c.isDigit() || x == maxX) && ongoingDigit != "") {
-                if (hasAdjacentSymbol(rows, ongoingDigit, x, maxX, y, maxY)) {
+                val xRange = max(x - ongoingDigit.length - 1, 0)..min(x, maxX)
+                val yRange = max(y - 1, 0)..min(y + 1, maxY)
+                if (hasAdjacentSymbol(rows, xRange, yRange)) {
                     part1Sum += ongoingDigit.toInt()
                 }
-                val gears = findAdjacentGears(rows, ongoingDigit, x, maxX, y, maxY)
+                val gears = findAdjacentGears(rows, xRange, yRange)
                 gears.forEach {
                     gearMap.compute(it) { _, v -> v?.plus(ongoingDigit.toInt()) ?: listOf(ongoingDigit.toInt()) }
                 }
@@ -44,21 +46,15 @@ fun main() {
         .sum()
 
     println(part2)
-
-    //507214
-    //72553319
 }
 
 private fun hasAdjacentSymbol(
     rows: List<String>,
-    ongoingDigit: String,
-    x: Int,
-    maxX: Int,
-    y: Int,
-    maxY: Int
+    xRange: IntRange,
+    yRange: IntRange
 ): Boolean {
-    for (xs in max(x - ongoingDigit.length - 1, 0)..min(x, maxX))
-        for (ys in max(y - 1, 0)..min(y + 1, maxY)) {
+    for (xs in xRange)
+        for (ys in yRange) {
             if (rows[ys][xs] != '.' && !rows[ys][xs].isDigit()) {
                 return true
             }
@@ -69,19 +65,17 @@ private fun hasAdjacentSymbol(
 
 private fun findAdjacentGears(
     rows: List<String>,
-    ongoingDigit: String,
-    x: Int,
-    maxX: Int,
-    y: Int,
-    maxY: Int
+    xRange: IntRange,
+    yRange: IntRange
 ): List<Coordinate> {
     val gears = mutableListOf<Coordinate>()
-    for (xs in max(x - ongoingDigit.length - 1, 0)..min(x, maxX))
-        for (ys in max(y - 1, 0)..min(y + 1, maxY)) {
+    for (xs in xRange) {
+        for (ys in yRange) {
             if (rows[ys][xs] == '*') {
                 gears.add(Coordinate(xs, ys))
             }
         }
+    }
     return gears
 }
 
