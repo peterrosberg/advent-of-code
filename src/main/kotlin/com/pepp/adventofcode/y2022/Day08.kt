@@ -1,4 +1,4 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.Coordinate
 import com.pepp.adventofcode.common.getFileContent
@@ -6,7 +6,7 @@ import com.pepp.adventofcode.common.getFileContent
 
 fun main() {
 
-    val fileContent = getFileContent("8.txt")
+    val fileContent = getFileContent("2022/8.txt")
     val grid = fileContent.split("\n")
         .map { row ->
             row.map { treeHeight ->

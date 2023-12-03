@@ -1,10 +1,10 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.getFileContent
 
 fun main() {
 
-    val fileContent = getFileContent("5.txt")
+    val fileContent = getFileContent("2022/5.txt")
     val isPartB = true
 
     val crateStack = "\\[([A-Z])]| {4}".toRegex()

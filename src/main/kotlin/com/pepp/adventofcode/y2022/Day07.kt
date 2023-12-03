@@ -1,4 +1,4 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.getFileContent
 
@@ -10,7 +10,7 @@ fun main() {
     val totalSpace = 70000000
     val targetSpace = 30000000
 
-    val fileContent = getFileContent("7.txt")
+    val fileContent = getFileContent("2022/7.txt")
 
     val rootDir = Directory("/", null)
     var currentDir = rootDir
@@ -26,9 +26,11 @@ fun main() {
                     ".." -> {
                         currentDir.parentDirectory!!
                     }
+
                     "/" -> {
                         rootDir
                     }
+
                     else -> {
                         Directory(dir, currentDir)
                     }

@@ -1,10 +1,10 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.getFileContent
 
 fun main() {
 
-    val fileContent = getFileContent("3.txt")
+    val fileContent = getFileContent("2022/3.txt")
 
     val rows = fileContent.split("\n")
     val sum = rows

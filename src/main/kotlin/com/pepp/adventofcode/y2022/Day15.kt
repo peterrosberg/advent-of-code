@@ -1,4 +1,4 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.Coordinate
 import com.pepp.adventofcode.common.getFileContent
@@ -6,7 +6,7 @@ import kotlin.math.abs
 
 fun main() {
 
-    val fileContent = getFileContent("15.txt")
+    val fileContent = getFileContent("2022/15.txt")
 
     val regex = "Sensor at x=(-?\\d+), y=(-?\\d+): closest beacon is at x=(-?\\d+), y=(-?\\d+)".toRegex()
     val sensorData = fileContent

@@ -1,4 +1,4 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.Coordinate
 import com.pepp.adventofcode.common.getFileContent
@@ -6,7 +6,7 @@ import java.lang.Integer.min
 
 fun main() {
 
-    val fileContent = getFileContent("12.txt")
+    val fileContent = getFileContent("2022/12.txt")
 
     var startingPoint: ElevationPoint? = null
     var endPoint: ElevationPoint? = null
@@ -19,10 +19,12 @@ fun main() {
                         startingPoint = ElevationPoint('a', Coordinate(x, y))
                         startingPoint!!
                     }
+
                     'E' -> {
                         endPoint = ElevationPoint('z', Coordinate(x, y))
                         endPoint!!
                     }
+
                     else -> ElevationPoint(c, Coordinate(x, y))
                 }
             }

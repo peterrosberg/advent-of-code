@@ -1,4 +1,4 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.Coordinate
 import com.pepp.adventofcode.common.getFileContent
@@ -6,7 +6,7 @@ import kotlin.math.abs
 
 fun main() {
 
-    val fileContent = getFileContent("09.txt")
+    val fileContent = getFileContent("2022/09.txt")
 
     val visitedPositions = mutableSetOf<Coordinate>()
     val rope = MutableList(10) { Coordinate(0, 0) }

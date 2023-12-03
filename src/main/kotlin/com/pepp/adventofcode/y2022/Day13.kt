@@ -1,10 +1,10 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.getFileContent
 
 fun main() {
 
-    val fileContent = getFileContent("13.txt")
+    val fileContent = getFileContent("2022/13.txt")
 
     val partA = fileContent.split("\n\n")
         .map { pair ->

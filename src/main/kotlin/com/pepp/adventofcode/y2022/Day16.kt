@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalTime::class)
 
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.getFileContent
 import kotlin.time.ExperimentalTime
@@ -8,7 +8,7 @@ import kotlin.time.measureTime
 
 fun main() {
 
-    val fileContent = getFileContent("16.txt")
+    val fileContent = getFileContent("2022/16.txt")
     var valves = constructValves(fileContent)
 
     valves

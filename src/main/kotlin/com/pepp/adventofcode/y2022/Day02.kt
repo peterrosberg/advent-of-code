@@ -1,10 +1,10 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.getFileContent
 
 fun main() {
 
-    val fileContent = getFileContent("2.txt")
+    val fileContent = getFileContent("2022/2.txt")
 
     val sum = fileContent.split("\n")
         .map { s ->
@@ -22,35 +22,43 @@ fun calculateScore(p: Pair<String, String>): Int {
                 "A" -> { //Rock -> Scissors
                     3
                 }
+
                 "B" -> { //Paper
                     1
                 }
+
                 else -> { //scissors
                     2
                 }
             }
         }
+
         "Y" -> { //draw
             3 + when (p.first) {
                 "A" -> { //Rock
                     1
                 }
+
                 "B" -> { //Paper
                     2
                 }
+
                 else -> { //scissors
                     3
                 }
             }
         }
+
         else -> { //win
             6 + when (p.first) {
                 "A" -> { //Rock
                     2
                 }
+
                 "B" -> { //Paper
                     3
                 }
+
                 else -> { //scissors
                     1
                 }

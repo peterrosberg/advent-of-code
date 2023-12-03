@@ -1,10 +1,10 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.getFileContent
 
 fun main() {
 
-    val fileContent = getFileContent("6.txt")
+    val fileContent = getFileContent("2022/6.txt")
 
     val marker = Marker(14)
     for (i in fileContent.indices) {

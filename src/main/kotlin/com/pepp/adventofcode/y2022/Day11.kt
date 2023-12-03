@@ -1,4 +1,4 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.getFileContent
 
@@ -6,7 +6,7 @@ fun main() {
     val monkeyPattern =
         "Starting items: (.+)\n\\s+Operation: new = (.+)\n\\s+Test: divisible by (\\d+)\n\\s+If true: throw to monkey (\\d+)\n\\s+If false: throw to monkey (\\d+)".toRegex()
 
-    val fileContent = getFileContent("11.txt")
+    val fileContent = getFileContent("2022/11.txt")
 
     val monkeys = fileContent.split("\n\n")
         .map { monkeyDescription ->

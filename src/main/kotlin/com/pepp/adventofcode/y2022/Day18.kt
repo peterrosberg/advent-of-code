@@ -1,11 +1,11 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.getFileContent
 import kotlin.math.abs
 
 fun main() {
 
-    val fileContent = getFileContent("18.txt")
+    val fileContent = getFileContent("2022/18.txt")
 
     val rockPoints = fileContent.split("\n").map {
         val coordinate = it.split(",")

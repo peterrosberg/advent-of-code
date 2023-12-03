@@ -1,4 +1,4 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.Coordinate
 import com.pepp.adventofcode.common.getFileContent
@@ -40,7 +40,7 @@ private val rocks = listOf(
 
 fun main() {
 
-    val fileContent = getFileContent("17.txt")
+    val fileContent = getFileContent("2022/17.txt")
 
     val answer1 = calculateRockHeight(fileContent, 2022L)
     println("Answer part 1: $answer1 ")

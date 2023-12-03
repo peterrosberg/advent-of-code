@@ -1,4 +1,4 @@
-package com.pepp.adventofcode
+package com.pepp.adventofcode.y2022
 
 import com.pepp.adventofcode.common.Coordinate
 import com.pepp.adventofcode.common.getFileContent
@@ -7,7 +7,7 @@ import kotlin.math.min
 
 fun main() {
 
-    val fileContent = getFileContent("14.txt")
+    val fileContent = getFileContent("2022/14.txt")
 
     val startPoint = Coordinate(500, 0)
     val cave = getCaveSystem(fileContent)
