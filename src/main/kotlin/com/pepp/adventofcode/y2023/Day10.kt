@@ -46,23 +46,6 @@ object Day10 {
             it.holeGroup == insideGroup
         }.count()
 
-        /*
-        printGrid(grid) { node ->
-            when (node.holeGroup) {
-                HoleGroup.LEFT -> 'l'
-                HoleGroup.RIGHT -> 'r'
-                HoleGroup.NONE -> '.'
-            }
-        }
-
-        printGrid(grid) { node ->
-            if (node.distance >= 0) {
-                node.char
-            } else '.'
-        }
-        */
-
-
         println(part2)
 
     }
@@ -102,15 +85,6 @@ object Day10 {
             if (currenNode.char == '.') break //circuit breaker in case we f**cked up
             direction = nextNode!!.coordinate.directionFrom(currenNode.coordinate)
             currenNode = nextNode
-        }
-    }
-
-    private fun printGrid(grid: Grid, printFn: (Node) -> Char) {
-        grid.rows.forEach { row ->
-            row.forEach { node ->
-                print(printFn(node))
-            }
-            println()
         }
     }
 
@@ -238,8 +212,5 @@ object Day10 {
         fun move(vararg others: Direction): List<Coordinate> {
             return others.map { other -> Coordinate(x + other.x, y + other.y) }
         }
-
     }
-
-
 }

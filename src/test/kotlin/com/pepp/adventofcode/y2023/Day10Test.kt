@@ -1,5 +1,9 @@
 package com.pepp.adventofcode.y2023
 
+import com.pepp.adventofcode.y2023.Day10.Direction.Companion.EAST
+import com.pepp.adventofcode.y2023.Day10.Direction.Companion.NORTH
+import com.pepp.adventofcode.y2023.Day10.Direction.Companion.SOUTH
+import com.pepp.adventofcode.y2023.Day10.Direction.Companion.WEST
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -8,20 +12,20 @@ class Day10Test {
     @Test
     fun `turn direction right`() {
 
-        assertThat(Day10.EAST.turnLeft()).isEqualTo(Day10.NORTH)
-        assertThat(Day10.NORTH.turnLeft()).isEqualTo(Day10.WEST)
-        assertThat(Day10.WEST.turnLeft()).isEqualTo(Day10.SOUTH)
-        assertThat(Day10.SOUTH.turnLeft()).isEqualTo(Day10.EAST)
+        assertThat(EAST.turnLeft()).isEqualTo(NORTH)
+        assertThat(NORTH.turnLeft()).isEqualTo(WEST)
+        assertThat(WEST.turnLeft()).isEqualTo(SOUTH)
+        assertThat(SOUTH.turnLeft()).isEqualTo(EAST)
 
     }
 
     @Test
     fun `turn direction left`() {
 
-        assertThat(Day10.EAST.turnRight()).isEqualTo(Day10.SOUTH)
-        assertThat(Day10.NORTH.turnRight()).isEqualTo(Day10.EAST)
-        assertThat(Day10.WEST.turnRight()).isEqualTo(Day10.NORTH)
-        assertThat(Day10.SOUTH.turnRight()).isEqualTo(Day10.WEST)
+        assertThat(EAST.turnRight()).isEqualTo(SOUTH)
+        assertThat(NORTH.turnRight()).isEqualTo(EAST)
+        assertThat(WEST.turnRight()).isEqualTo(NORTH)
+        assertThat(SOUTH.turnRight()).isEqualTo(WEST)
 
     }
 
