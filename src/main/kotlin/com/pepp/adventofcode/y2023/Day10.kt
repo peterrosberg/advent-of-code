@@ -79,27 +79,28 @@ object Day10 {
 
             var nextNode: Node?
             if (currenNode.char == '|' || currenNode.char == '-') {
-                addToGroup(grid, currenNode, direction.turnLeft(), HoleGroup.LEFT)
-                addToGroup(grid, currenNode, direction.turnRight(), HoleGroup.RIGHT)
+                //continue straight
+                handlePotentialHole(grid, currenNode, direction.turnLeft(), HoleGroup.LEFT)
+                handlePotentialHole(grid, currenNode, direction.turnRight(), HoleGroup.RIGHT)
                 nextNode = grid.get(currenNode.coordinate.plus(direction))
+            } else if ((direction == NORTH && currenNode.char == 'F')
+                || (direction == WEST && currenNode.char == 'L')
+                || (direction == SOUTH && currenNode.char == 'J')
+                || (direction == EAST && currenNode.char == '7')
+            ) {
+                //turning right
+                handlePotentialHole(grid, currenNode, direction.turnLeft(), HoleGroup.LEFT)
+                handlePotentialHole(grid, currenNode, direction, HoleGroup.LEFT)
+                nextNode = grid.get(currenNode.coordinate.plus(direction.turnRight()))
             } else {
-                //turning
-                nextNode = if ((direction == NORTH && currenNode.char == 'F')
-                    || (direction == WEST && currenNode.char == 'L')
-                    || (direction == SOUTH && currenNode.char == 'J')
-                    || (direction == EAST && currenNode.char == '7')
-                ) {
-                    addToGroup(grid, currenNode, direction.turnLeft(), HoleGroup.LEFT)
-                    addToGroup(grid, currenNode, direction, HoleGroup.LEFT)
-                    grid.get(currenNode.coordinate.plus(direction.turnRight()))
-                } else {
-                    addToGroup(grid, currenNode, direction.turnRight(), HoleGroup.RIGHT)
-                    addToGroup(grid, currenNode, direction, HoleGroup.RIGHT)
-                    grid.get(currenNode.coordinate.plus(direction.turnLeft()))
-                }
+                //turning left
+                handlePotentialHole(grid, currenNode, direction.turnRight(), HoleGroup.RIGHT)
+                handlePotentialHole(grid, currenNode, direction, HoleGroup.RIGHT)
+                nextNode = grid.get(currenNode.coordinate.plus(direction.turnLeft()))
             }
 
-            if (currenNode.char == '.') break //something is wrong
+
+            if (currenNode.char == '.') break //circuit breaker in case we f**cked up
             direction = nextNode!!.coordinate.minus(currenNode.coordinate)
             currenNode = nextNode
         }
@@ -114,17 +115,17 @@ object Day10 {
         }
     }
 
-    private fun addToGroup(grid: Grid, nextNode: Node, direction: Coordinate, holeGroup: HoleGroup) {
-        addToGroup(grid, grid.get(nextNode.coordinate.plus(direction)), holeGroup)
+    private fun handlePotentialHole(grid: Grid, nextNode: Node, direction: Coordinate, holeGroup: HoleGroup) {
+        handlePotentialHole(grid, grid.get(nextNode.coordinate.plus(direction)), holeGroup)
     }
 
-    private fun addToGroup(grid: Grid, node: Node?, group: HoleGroup) {
+    private fun handlePotentialHole(grid: Grid, node: Node?, group: HoleGroup) {
         if (node == null || node.distance >= 0 || node.holeGroup != HoleGroup.NONE) return
 
         node.holeGroup = group
         //spread in all directions
         node.coordinate.allNeighbours().forEach {
-            addToGroup(grid, grid.get(it), group)
+            handlePotentialHole(grid, grid.get(it), group)
         }
     }
 
