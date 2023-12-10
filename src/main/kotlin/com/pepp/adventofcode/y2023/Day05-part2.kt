@@ -73,5 +73,4 @@ fun convertSeedRange(seedRange: LongRange, seedMaps: List<SeedMap>): List<LongRa
 
     return if (out.isEmpty()) listOf(seedRange)
     else out.toList()
-
 }
