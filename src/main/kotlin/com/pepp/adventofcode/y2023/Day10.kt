@@ -1,6 +1,10 @@
 package com.pepp.adventofcode.y2023
 
 import com.pepp.adventofcode.common.getFileContent
+import com.pepp.adventofcode.y2023.Day10.Direction.Companion.EAST
+import com.pepp.adventofcode.y2023.Day10.Direction.Companion.NORTH
+import com.pepp.adventofcode.y2023.Day10.Direction.Companion.SOUTH
+import com.pepp.adventofcode.y2023.Day10.Direction.Companion.WEST
 import kotlin.system.measureTimeMillis
 
 fun main() {
@@ -12,11 +16,6 @@ fun main() {
 }
 
 object Day10 {
-
-    val WEST = Coordinate(-1, 0)
-    val EAST = Coordinate(1, 0)
-    val NORTH = Coordinate(0, -1)
-    val SOUTH = Coordinate(0, 1)
 
     fun main() {
         val fileContent = getFileContent("2023/10.txt")
@@ -70,7 +69,7 @@ object Day10 {
 
     private fun traverseLoopAndMarkHolesToLeftAndRight(grid: Grid, startNode: Node) {
         var currenNode = grid.findNodesConnectedTo(startNode.coordinate).first()
-        var direction = currenNode.coordinate.minus(startNode.coordinate)
+        var direction = currenNode.coordinate.directionFrom(startNode.coordinate)
 
 
         while (currenNode != startNode) {
@@ -82,7 +81,7 @@ object Day10 {
                 //continue straight
                 handlePotentialHole(grid, currenNode, direction.turnLeft(), HoleGroup.LEFT)
                 handlePotentialHole(grid, currenNode, direction.turnRight(), HoleGroup.RIGHT)
-                nextNode = grid.get(currenNode.coordinate.plus(direction))
+                nextNode = grid.get(currenNode.coordinate.move(direction))
             } else if ((direction == NORTH && currenNode.char == 'F')
                 || (direction == WEST && currenNode.char == 'L')
                 || (direction == SOUTH && currenNode.char == 'J')
@@ -91,17 +90,17 @@ object Day10 {
                 //turning right
                 handlePotentialHole(grid, currenNode, direction.turnLeft(), HoleGroup.LEFT)
                 handlePotentialHole(grid, currenNode, direction, HoleGroup.LEFT)
-                nextNode = grid.get(currenNode.coordinate.plus(direction.turnRight()))
+                nextNode = grid.get(currenNode.coordinate.move(direction.turnRight()))
             } else {
                 //turning left
                 handlePotentialHole(grid, currenNode, direction.turnRight(), HoleGroup.RIGHT)
                 handlePotentialHole(grid, currenNode, direction, HoleGroup.RIGHT)
-                nextNode = grid.get(currenNode.coordinate.plus(direction.turnLeft()))
+                nextNode = grid.get(currenNode.coordinate.move(direction.turnLeft()))
             }
 
 
             if (currenNode.char == '.') break //circuit breaker in case we f**cked up
-            direction = nextNode!!.coordinate.minus(currenNode.coordinate)
+            direction = nextNode!!.coordinate.directionFrom(currenNode.coordinate)
             currenNode = nextNode
         }
     }
@@ -115,8 +114,8 @@ object Day10 {
         }
     }
 
-    private fun handlePotentialHole(grid: Grid, nextNode: Node, direction: Coordinate, holeGroup: HoleGroup) {
-        handlePotentialHole(grid, grid.get(nextNode.coordinate.plus(direction)), holeGroup)
+    private fun handlePotentialHole(grid: Grid, nextNode: Node, direction: Direction, holeGroup: HoleGroup) {
+        handlePotentialHole(grid, grid.get(nextNode.coordinate.move(direction)), holeGroup)
     }
 
     private fun handlePotentialHole(grid: Grid, node: Node?, group: HoleGroup) {
@@ -159,12 +158,12 @@ object Day10 {
 
         fun getNextNodes(coordinate: Coordinate): List<Node> {
             return when (get(coordinate)?.char) {
-                '|' -> coordinate.plus(NORTH, SOUTH)
-                '-' -> coordinate.plus(WEST, EAST)
-                'L' -> coordinate.plus(NORTH, EAST)
-                'J' -> coordinate.plus(NORTH, WEST)
-                '7' -> coordinate.plus(SOUTH, WEST)
-                'F' -> coordinate.plus(SOUTH, EAST)
+                '|' -> coordinate.move(NORTH, SOUTH)
+                '-' -> coordinate.move(WEST, EAST)
+                'L' -> coordinate.move(NORTH, EAST)
+                'J' -> coordinate.move(NORTH, WEST)
+                '7' -> coordinate.move(SOUTH, WEST)
+                'F' -> coordinate.move(SOUTH, EAST)
                 else -> listOf()
             }.mapNotNull { get(it) }
         }
@@ -202,31 +201,44 @@ object Day10 {
         var holeGroup: HoleGroup = HoleGroup.NONE
     )
 
+    data class Direction(
+        val x: Int,
+        val y: Int
+    ) {
+        companion object {
+            val WEST = Direction(-1, 0)
+            val EAST = Direction(1, 0)
+            val NORTH = Direction(0, -1)
+            val SOUTH = Direction(0, 1)
+        }
+
+        fun turnRight(): Direction {
+            return Direction(-this.y, this.x)
+        }
+
+        fun turnLeft(): Direction {
+            return Direction(this.y, -this.x)
+        }
+    }
+
     data class Coordinate(
         val x: Int,
         val y: Int
     ) {
-        fun allNeighbours() = plus(NORTH, SOUTH, EAST, WEST)
+        fun allNeighbours() = move(NORTH, SOUTH, EAST, WEST)
 
-        fun plus(other: Coordinate): Coordinate {
+        fun move(other: Direction): Coordinate {
             return Coordinate(x + other.x, y + other.y)
         }
 
-        fun minus(other: Coordinate): Coordinate {
-            return Coordinate(x - other.x, y - other.y)
+        fun directionFrom(other: Coordinate): Direction {
+            return Direction(x - other.x, y - other.y)
         }
 
-        fun plus(vararg others: Coordinate): List<Coordinate> {
+        fun move(vararg others: Direction): List<Coordinate> {
             return others.map { other -> Coordinate(x + other.x, y + other.y) }
         }
 
-        fun turnRight(): Coordinate {
-            return Coordinate(-this.y, this.x)
-        }
-
-        fun turnLeft(): Coordinate {
-            return Coordinate(this.y, -this.x)
-        }
     }
 
 
